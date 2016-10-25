@@ -1,6 +1,6 @@
 # Testbed topo:
 ![](./src/Architecture.jpg)
- *****.jpg
+
  
 # ONOS Install guide:
 
@@ -10,7 +10,7 @@ https://wiki.onosproject.org/display/ONOS/ONOS+from+Scratch
 
 > $ sudo UFW allow <port>
 
-# Use screen for initialization of Pica8 via serial port(when Pica8 has no IP address)
+# Use screen for initialization of Pica8 via serial port when Pica8 has no IP address(Yellow Line)
 
 > $ screen /dev/ttyS0 115200
 
