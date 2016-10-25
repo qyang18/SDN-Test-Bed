@@ -34,7 +34,7 @@ Select the mode of pica8 as Open vSwitch mode
 
 > $ ok clean
 
-## create vSwitch on Pica8
+## Create vSwitch on Pica8
 
 ### Add bridge on Pica8(a bridge means a virtual switch, * is the bridge name you set):
 
@@ -52,24 +52,23 @@ In switch mode you may not be able to connect with each other even if both devic
 
 > $ ovs-ofctl add-flow br* in_port=2,actions=output:1
 
-### dump port and check rx tx:
+### Dump port and check rx tx:
 
 > $ ovs-ofctl dump-ports br0
 
-### dump flow:
+### Dump flow:
 
 > $ ovs-ofctl dump-flows br0
 
-### set controller(connect bridge to SDN controller):
+### Set controller(connect bridge to SDN controller):
 
 > $ ovs-vsctl set-controller br* tcp:*.*.*.*:6633
 
-### set OpenFlow protocol version:
+### Set OpenFlow protocol version:
 
 > $ ovs-vsctl set Bridge br* protocols=OpenFlow14
 
-
-### check connection:
+### Check connection:
 
 > $ netstat -an | grep 6633
 
