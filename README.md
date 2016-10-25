@@ -1,5 +1,5 @@
 # Testbed topo:
-
+![](./src/Architecture.jpg)
  *****.jpg
  
 # ONOS Install guide:
