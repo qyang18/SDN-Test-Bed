@@ -30,6 +30,10 @@ Select the mode of pica8 as Open vSwitch mode
 
 # 2. Testbed usage
 
+## Start ONOS
+
+> $ ok clean
+
 ## create vSwitch on Pica8
 
 ### Add bridge on Pica8(a bridge means a virtual switch, * is the bridge name you set):
