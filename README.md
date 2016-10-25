@@ -17,8 +17,11 @@ https://wiki.onosproject.org/display/ONOS/ONOS+from+Scratch
 # Install and configure Pica8:
 
 > $ sudo picos_boot
+
 Select the mode of pica8 as Open vSwitch mode
+
 > $ sudo service picos start
+
 > $ sudo reboot
 
 ## Add bridge on Pica8(a bridge means a virtual switch, * is the bridge name you set):
