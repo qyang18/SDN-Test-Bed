@@ -88,6 +88,8 @@ The connection from bridge to SDN controller will start automatically after this
 
 > $ netstat -an | grep 6633
 
+Connection is successful if the connection of port 6633 shows established. Otherwise the connection is failed.
+
 ## Mininet Configuration
 
 In order to connect Mininet with Pica8, we need to assign a physical ethernet port to Mininet switch. The example Mininet topo file are shown in [testbed.py](./example/testbed.py). 
