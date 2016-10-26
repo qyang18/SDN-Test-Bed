@@ -3,7 +3,7 @@
 The IP address and Mac address of devices in topo:
 
 
->`Server:   192.168.33.101  00:25:90:fc:cd:dc`
+>`Server:192.168.33.101  00:25:90:fc:cd:dc`
 
 >`Pica8:    192.168.33.104  48:6e:73:02:05:ad`
 
