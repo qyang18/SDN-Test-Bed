@@ -74,7 +74,8 @@ In this case we add a pair of bidirectional rules to allow connections between p
 
 > $ ovs-ofctl dump-flows br0
 
-### Set controller(connect bridge to SDN controller):
+### Set controller:
+The connection from bridge to SDN controller will start automatically after this command:
 
 > $ ovs-vsctl set-controller br* tcp:IP_address:6633
 
