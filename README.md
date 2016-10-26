@@ -21,7 +21,7 @@ https://wiki.onosproject.org/display/ONOS/ONOS+from+Scratch
 
 ## Pica8 Configuration
 
-### Use screen for initialization of Pica8 via serial port when Pica8 has no IP address(Yellow Line)
+### Use screen for initialization of Pica8 via serial port when Pica8 has no IP address
 
 > $ screen /dev/ttyS0 115200
 
@@ -47,17 +47,20 @@ Select the mode of pica8 as Open vSwitch mode
 
 ## Create vSwitch on Pica8
 
-### Add bridge on Pica8(a bridge means a virtual switch, * is the bridge name you set):
+### Add bridge on Pica8:
+A bridge means a virtual switch, br* is the bridge name you set:
 
 > $ ovs-vsctl add-br br* 
 
-### Add port to the bridge(* is the port number on Pica8):
+### Add port to the bridge:
+ge-1/1/* is the port number on Pica8:
 
 > $ ovs-vsctl add-port br* ge-1/1/* -- set Interface ge-1/1/* type=pica8 
 
 In switch mode you may not be able to connect with each other even if both devices connect to the same bridge,if you want to connect with each other without Pica8 connect to a controller, you can add a local flow rule and it will work.
 
-### Add flow rule(bidirectional):
+### Add flow rule:
+In this case we add a pair of bidirectional rules to allow connections between port1 and port2:
 
 > $ ovs-ofctl add-flow br* in_port=1,actions=output:2
 
@@ -73,7 +76,7 @@ In switch mode you may not be able to connect with each other even if both devic
 
 ### Set controller(connect bridge to SDN controller):
 
-> $ ovs-vsctl set-controller br* tcp:*.*.*.*:6633
+> $ ovs-vsctl set-controller br* tcp:IP_address:6633
 
 ### Set OpenFlow protocol version:
 
