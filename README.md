@@ -1,7 +1,7 @@
 # Testbed topo:
 ![](./src/Architecture.jpg)
 The IP address and Mac address of devices in topo:
-> 'Server: 192.168.33.101  00:25:90:fc:cd:dc'
+'Server: 192.168.33.101  00:25:90:fc:cd:dc'
 > Pica8:  192.168.33.104  48:6e:73:02:05:ad
 > Host1:  192.168.33.110  b8:27:eb:ed:94:03
 > Host2:  192.168.33.111  b8:27:eb:f0:4b:00
