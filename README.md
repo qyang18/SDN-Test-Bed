@@ -59,7 +59,8 @@ ge-1/1/* is the port number on Pica8:
 
 In switch mode you may not be able to connect with each other even if both devices connect to the same bridge,if you want to connect with each other without Pica8 connect to a controller, you can add a local flow rule and it will work.
 
-### Add flow rule:
+Add flow rule:
+
 In this case we add a pair of bidirectional rules to allow connections between port1 and port2:
 
 > $ ovs-ofctl add-flow br* in_port=1,actions=output:2
