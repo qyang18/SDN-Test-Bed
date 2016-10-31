@@ -59,6 +59,8 @@ ge-1/1/* is the port number on Pica8:
 
 In switch mode you may not be able to connect with each other even if both devices connect to the same bridge,if you want to connect with each other without Pica8 connect to a controller, you can add a local flow rule and it will work.
 
+Remember, te-1/1/1 represents 10G ports, while ge-1/1/1 represents 1G ports.
+
 Add flow rule:
 
 In this case we add a pair of bidirectional rules to allow connections between port1 and port2:
