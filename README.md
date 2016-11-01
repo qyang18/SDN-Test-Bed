@@ -69,6 +69,10 @@ In this case we add a pair of bidirectional rules to allow connections between p
 
 > $ ovs-ofctl add-flow br* in_port=2,actions=output:1
 
+Delete flow
+
+> & ovs-ofctl del-flows br*
+
 ### Dump port and check rx tx:
 
 > $ ovs-ofctl dump-ports br0
