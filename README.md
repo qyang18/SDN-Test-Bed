@@ -121,3 +121,13 @@ If not, try installing from the git repository https://github.com/mininet/minine
 And make sure that Mininet works:
 
 > $ sudo mn --test pingall
+
+## Raspberry Pi cannot connect to internet
+
+Shutdown eth0 before connect to internet
+
+> $ sudo ifdown eth0
+
+After connect to internet, enable eth0
+
+> $ sudo ifup eth0
