@@ -82,6 +82,10 @@ The connection from bridge to SDN controller will start automatically after this
 
 > $ ovs-vsctl set-controller br* tcp:IP_address:6633
 
+Delete Controller
+
+> $ ovs-vsctl del-controller br*
+
 ### Set OpenFlow protocol version:
 
 > $ ovs-vsctl set Bridge br* protocols=OpenFlow14
