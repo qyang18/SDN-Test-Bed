@@ -73,6 +73,12 @@ Delete flow
 
 > & ovs-ofctl del-flows br*
 
+Modify behaviors of port in switch
+
+> $ ovs-ofctl mod-port <bridge> <port> up
+
+> $ ovs-ofctl mod-port <bridge> <port> down
+
 ### Dump port and check rx tx:
 
 > $ ovs-ofctl dump-ports br0
