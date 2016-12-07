@@ -11,8 +11,8 @@ from mininet.util import quietRun
 
 info("*** Creating controllers\n")
 net = Mininet( controller=RemoteController )
-c1 = net.addController('c0', ip='92.168.56.101', port=6633)
-c2 = net.addController('c1', ip='92.168.56.102', port=6633)
+c1 = net.addController('c1', ip='192.168.56.101', port=6633)
+c2 = net.addController('c2', ip='192.168.56.102', port=6633)
 
 info("*** Creating switches\n")
 s1 = net.addSwitch('s1',dpid='0000000000000005')
