@@ -13,8 +13,10 @@ from mininet.util import quietRun
 net = Mininet(controller = RemoteController, switch = OVSSwitch)
 
 info("*** Creating controllers\n")
-c0 = RemoteController('c0', ip='127.0.0.1', port=6633) # set controller
+c0 = RemoteController('c0', ip='92.168.56.101', port=6633) # set controller
+c1 = RemoteController('c1', ip='92.168.56.102', port=6633) # set controller
 net.addController(c0) # add controller to mininet
+net.addController(c1) # add controller to mininet
 
 info("*** Creating switches\n")
 s1 = net.addSwitch('s1',dpid='0000000000000005')
