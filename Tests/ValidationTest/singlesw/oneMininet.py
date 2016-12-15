@@ -23,19 +23,16 @@ class SingleSwitchTopo(Topo):
         h4 = self.addHost('h4',ip='12.0.3.4')
         h5 = self.addHost('h5',ip='12.0.3.5')
         h6 = self.addHost('h6',ip='12.0.3.6')
-        h7 = self.addHost('h7',ip='12.0.3.7')
-        h8 = self.addHost('h8',ip='12.0.3.8')
+        
 
         self.addLink(s1, s2, bw=100)
         self.addLink(s1, h1, bw=100)
         self.addLink(s1, h2, bw=100)
         self.addLink(s1, h3, bw=100)
-        self.addLink(s1, h4, bw=100)
+        self.addLink(s2, h4, bw=100)
         self.addLink(s2, h5, bw=100)
         self.addLink(s2, h6, bw=100)
-        self.addLink(s2, h7, bw=100)
-        self.addLink(s2, h8, bw=100)
-
+        
 def perfTest(  ):
     "Create network and run simple performance test"
     topo = SingleSwitchTopo()
