@@ -14,20 +14,20 @@ class SingleSwitchTopo(Topo):
     def __init__(self, **opts):
         Topo.__init__(self, **opts)
 
-  s1 = self.addSwitch('s1',dpid='1000000000000001')
-	s2 = self.addSwitch('s2',dpid='1000000000000002')
-            
-  h1 = self.addHost('h1',ip='12.0.0.1')
-	h2 = self.addHost('h2',ip='12.0.0.2')
-        
-	self.addLink(h1, s1, bw=100)
-	self.addLink(s1, s2, bw=100)
-	self.addLink(s2, h2, bw=100)
+        s1 = self.addSwitch('s1',dpid='1000000000000001')
+        s2 = self.addSwitch('s2',dpid='1000000000000002')
+
+        h1 = self.addHost('h1',ip='12.0.0.1')
+        h2 = self.addHost('h2',ip='12.0.0.2')
+
+        self.addLink(h1, s1, bw=100)
+        self.addLink(s1, s2, bw=100)
+        self.addLink(s2, h2, bw=100)
 
 def perfTest(  ):
     "Create network and run simple performance test"
     topo = SingleSwitchTopo()
-    net = Mininet( controller=RemoteController, topo=topo, link=TCLink, switch = OVSSwitch )
+    net = Mininet( controller=RemoteController, topo=topo, link=TCLink, switch $
     c1 = net.addController('c1', ip='192.168.33.101', port=6033)
     c2 = net.addController('c2', ip='192.168.33.101', port=6133)
     c3 = net.addController('c3', ip='192.168.33.101', port=6233)
@@ -40,4 +40,4 @@ def perfTest(  ):
     net.stop()
 
 setLogLevel( 'info' )
-perfTest( )
+perfTest( )		  
