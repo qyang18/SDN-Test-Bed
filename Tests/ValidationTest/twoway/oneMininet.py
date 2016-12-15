@@ -22,8 +22,8 @@ s1 = net.addSwitch('s1',dpid='1000000000000001')
 s2 = net.addSwitch('s2',dpid='1000000000000002')
 
 info("*** Creating hosts\n")
-h1 = net.addHost('h1',ip='12.1.0.1')
-h2 = net.addHost('h2',ip='12.1.0.2')
+h1 = net.addHost('h1',ip='12.0.0.1')
+h2 = net.addHost('h2',ip='12.0.0.2')
 
 info("*** Creating links\n")
 link11 = net.addLink(s1,h1,cls=TCLink)
