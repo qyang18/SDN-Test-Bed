@@ -37,10 +37,8 @@ def perfTest(  ):
     c3 = net.addController('c3', ip='192.168.33.101', port=6233)
 
     net.start()
-    h1, h2 = net.getNodeByName('h1', 'h2')
-    h1.cmd("./Server 5 &")
-    h2.cmd("./Client 5 11.1.0.1 ")
-    #CLI(net)
+    h1, h2, h3, h4 = net.getNodeByName('h1', 'h2', 'h3','h4')
+    CLI(net)
     net.stop()
 
 setLogLevel( 'info' )
