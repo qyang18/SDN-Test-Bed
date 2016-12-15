@@ -31,7 +31,7 @@ class SingleSwitchTopo(Topo):
 def perfTest(  ):
     "Create network and run simple performance test"
     topo = SingleSwitchTopo()
-    net = Mininet( controller=RemoteController, topo=topo, link=TCLink, switch $
+    net = Mininet( controller=RemoteController, topo=topo, link=TCLink, switch= OVSSwitch )
     c1 = net.addController('c1', ip='192.168.33.101', port=6033)
     c2 = net.addController('c2', ip='192.168.33.101', port=6133)
     c3 = net.addController('c3', ip='192.168.33.101', port=6233)
