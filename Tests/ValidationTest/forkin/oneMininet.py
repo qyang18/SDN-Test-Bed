@@ -1,46 +1,45 @@
-from mininet.net import Mininet
-from mininet.topolib import TreeTopo
-from mininet.node import RemoteController, OVSSwitch
-from mininet.link import TCLink
-import re
-import sys
-
 from mininet.cli import CLI
-from mininet.log import setLogLevel, info, error
-from mininet.link import Intf
-from mininet.util import quietRun
+from mininet.topo import Topo
+from mininet.net import Mininet
+from mininet.node import CPULimitedHost
+from mininet.link import TCLink
+from mininet.util import dumpNodeConnections
+from mininet.log import setLogLevel
+from mininet.node import RemoteController, OVSSwitch
 
-info("*** Creating controllers\n")
-net = Mininet( controller=RemoteController, switch = OVSSwitch )
+from sys import argv
 
-c1 = net.addController('c1', ip='192.168.33.101', port=6033)
-c2 = net.addController('c2', ip='192.168.33.101', port=6133)
-c3 = net.addController('c3', ip='192.168.33.101', port=6233)
+class SingleSwitchTopo(Topo):
+    "Single switch connected to n hosts."
+    def __init__(self, **opts):
+        Topo.__init__(self, **opts)
 
-info("*** Creating switches\n")
-s1 = net.addSwitch('s1',dpid='1000000000000021')
-s2 = net.addSwitch('s2',dpid='1000000000000022')
+        s1 = self.addSwitch('s1',dpid='1000000000000021')
+        s2 = self.addSwitch('s2',dpid='1000000000000022')
 
-info("*** Creating hosts\n")
-h1 = net.addHost('h1',ip='12.0.2.1')
-h2 = net.addHost('h2',ip='12.0.2.2')
-h3 = net.addHost('h3',ip='12.0.2.3')
-h4 = net.addHost('h4',ip='12.0.2.4')
+        h1 = self.addHost('h1',ip='12.0.2.1')
+        h2 = self.addHost('h2',ip='12.0.2.2')
+        h3 = self.addHost('h3',ip='12.0.2.3')
+        h4 = self.addHost('h4',ip='12.0.2.4')
 
-info("*** Creating links\n")
-link1 = net.addLink(s1,h1,cls=TCLink)
-link1.intf1.config(bw=100)
-link2 = net.addLink(s1,s2,cls=TCLink)
-link2.intf1.config(bw=100)
-link3 = net.addLink(s2,h2,cls=TCLink)
-link3.intf1.config(bw=100)
-link4 = net.addLink(s2,h3,cls=TCLink)
-link4.intf1.config(bw=100)
-link5 = net.addLink(s2,h4,cls=TCLink)
-link5.intf1.config(bw=100)
+        self.addLink(h1, s1, bw=100)
+        self.addLink(s1, s2, bw=100)
+        self.addLink(s2, h2, bw=100)
+        self.addLink(s2, h3, bw=100)
+        self.addLink(s2, h4, bw=100)
 
-info("*** Starting network\n")
-net.build()
-net.start()
-CLI(net)
-net.stop()
+def perfTest(  ):
+    "Create network and run simple performance test"
+    topo = SingleSwitchTopo()
+    net = Mininet( controller=RemoteController, topo=topo, link=TCLink, switch= OVSSwitch )
+    c1 = net.addController('c1', ip='192.168.33.101', port=6033)
+    c2 = net.addController('c2', ip='192.168.33.101', port=6133)
+    c3 = net.addController('c3', ip='192.168.33.101', port=6233)
+
+    net.start()
+    h1, h2, h3, h4 = net.getNodeByName('h1', 'h2', 'h3','h4')
+    CLI(net)
+    net.stop()
+
+setLogLevel( 'info' )
+perfTest( )
