@@ -26,7 +26,6 @@ class SingleSwitchTopo(Topo):
         h7 = self.addHost('h7',ip='12.0.3.7')
         h8 = self.addHost('h8',ip='12.0.3.8')
 
-        
         self.addLink(s1, s2, bw=100)
         self.addLink(s1, h1, bw=100)
         self.addLink(s1, h2, bw=100)
