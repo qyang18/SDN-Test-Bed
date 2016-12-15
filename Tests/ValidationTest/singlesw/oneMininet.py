@@ -42,7 +42,7 @@ def perfTest(  ):
     c3 = net.addController('c3', ip='192.168.33.101', port=6233)
 
     net.start()
-    h1, h2, h3, h4, h5, h6, h7, h8= net.getNodeByName('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8')
+    h1, h2, h3, h4, h5, h6= net.getNodeByName('h1', 'h2', 'h3', 'h4', 'h5', 'h6')
     CLI(net)
     net.stop()
 
