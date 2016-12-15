@@ -23,18 +23,15 @@ class SingleSwitchTopo(Topo):
         h4 = self.addHost('h4',ip='12.0.4.4')
         h5 = self.addHost('h5',ip='12.0.4.5')
         h6 = self.addHost('h6',ip='12.0.4.6')
-        h7 = self.addHost('h7',ip='12.0.4.7')
-        h8 = self.addHost('h8',ip='12.0.4.8')
+        
 
         self.addLink(s1, s2, bw=100)
         self.addLink(s1, h1, bw=100)
         self.addLink(s1, h2, bw=100)
         self.addLink(s1, h3, bw=100)
-        self.addLink(s1, h4, bw=100)
+        self.addLink(s2, h4, bw=100)
         self.addLink(s2, h5, bw=100)
         self.addLink(s2, h6, bw=100)
-        self.addLink(s2, h7, bw=100)
-        self.addLink(s2, h8, bw=100)
 
 def perfTest(  ):
     "Create network and run simple performance test"
@@ -45,7 +42,7 @@ def perfTest(  ):
     c3 = net.addController('c3', ip='192.168.33.101', port=6233)
 
     net.start()
-    h1, h2, h3, h4, h5, h6, h7, h8= net.getNodeByName('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8')
+    h1, h2, h3, h4, h5, h6= net.getNodeByName('h1', 'h2', 'h3', 'h4', 'h5', 'h6')
     CLI(net)
     net.stop()
 
