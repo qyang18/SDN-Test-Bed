@@ -35,7 +35,7 @@ def perfTest(  ):
     net.start()
     h1, h2 = net.getNodeByName('h1', 'h2')
     h1.cmd("./Server 5 &")
-    h2.cmd("./Client 5 11.1.0.1 ")
+    h2.cmd("./Client 5 12.0.0.1 ")
     #CLI(net)
     net.stop()
 
