@@ -17,7 +17,10 @@ The IP address and Mac address of devices in topo:
 
 ## ONOS Install guide:
 
+https://wiki.onosproject.org/display/ONOS/Building+ONOS
+
 https://wiki.onosproject.org/display/ONOS/ONOS+from+Scratch
+
 
 ## Pica8 Configuration
 
