@@ -1,0 +1,62 @@
+h11 ping h21:
+64 bytes from 10.0.2.1: icmp_req=2 ttl=64 time=5.85 ms
+64 bytes from 10.0.2.1: icmp_req=3 ttl=64 time=3.49 ms
+64 bytes from 10.0.2.1: icmp_req=4 ttl=64 time=2.15 ms
+64 bytes from 10.0.2.1: icmp_req=5 ttl=64 time=3.96 ms
+64 bytes from 10.0.2.1: icmp_req=6 ttl=64 time=4.42 ms
+64 bytes from 10.0.2.1: icmp_req=7 ttl=64 time=5.80 ms
+64 bytes from 10.0.2.1: icmp_req=8 ttl=64 time=3.73 ms
+64 bytes from 10.0.2.1: icmp_req=9 ttl=64 time=7.46 ms
+64 bytes from 10.0.2.1: icmp_req=10 ttl=64 time=3.34 ms
+64 bytes from 10.0.2.1: icmp_req=11 ttl=64 time=8.75 ms
+
+
+h12 ping h32:
+64 bytes from 10.0.3.2: icmp_req=2 ttl=64 time=14.3 ms
+64 bytes from 10.0.3.2: icmp_req=3 ttl=64 time=11.0 ms
+64 bytes from 10.0.3.2: icmp_req=4 ttl=64 time=10.1 ms
+64 bytes from 10.0.3.2: icmp_req=5 ttl=64 time=9.40 ms
+64 bytes from 10.0.3.2: icmp_req=6 ttl=64 time=11.7 ms
+64 bytes from 10.0.3.2: icmp_req=7 ttl=64 time=6.52 ms
+64 bytes from 10.0.3.2: icmp_req=8 ttl=64 time=12.2 ms
+64 bytes from 10.0.3.2: icmp_req=9 ttl=64 time=11.9 ms
+64 bytes from 10.0.3.2: icmp_req=10 ttl=64 time=20.0 ms
+64 bytes from 10.0.3.2: icmp_req=11 ttl=64 time=12.2 ms
+
+
+h13 ping h23:
+64 bytes from 10.0.2.3: icmp_req=2 ttl=64 time=15.9 ms
+64 bytes from 10.0.2.3: icmp_req=3 ttl=64 time=17.9 ms
+64 bytes from 10.0.2.3: icmp_req=4 ttl=64 time=13.6 ms
+64 bytes from 10.0.2.3: icmp_req=5 ttl=64 time=13.0 ms
+64 bytes from 10.0.2.3: icmp_req=6 ttl=64 time=12.9 ms
+64 bytes from 10.0.2.3: icmp_req=7 ttl=64 time=25.2 ms
+64 bytes from 10.0.2.3: icmp_req=8 ttl=64 time=17.2 ms
+64 bytes from 10.0.2.3: icmp_req=9 ttl=64 time=10.2 ms
+64 bytes from 10.0.2.3: icmp_req=10 ttl=64 time=18.3 ms
+64 bytes from 10.0.2.3: icmp_req=11 ttl=64 time=21.8 ms
+
+h14 ping h22:
+64 bytes from 10.0.2.2: icmp_req=2 ttl=64 time=8.32 ms
+64 bytes from 10.0.2.2: icmp_req=3 ttl=64 time=20.1 ms
+64 bytes from 10.0.2.2: icmp_req=4 ttl=64 time=9.82 ms
+64 bytes from 10.0.2.2: icmp_req=5 ttl=64 time=9.23 ms
+64 bytes from 10.0.2.2: icmp_req=6 ttl=64 time=19.8 ms
+64 bytes from 10.0.2.2: icmp_req=7 ttl=64 time=15.1 ms
+64 bytes from 10.0.2.2: icmp_req=8 ttl=64 time=6.78 ms
+64 bytes from 10.0.2.2: icmp_req=9 ttl=64 time=11.7 ms
+64 bytes from 10.0.2.2: icmp_req=10 ttl=64 time=19.7 ms
+64 bytes from 10.0.2.2: icmp_req=11 ttl=64 time=9.56 ms
+
+h43 ping h53:
+64 bytes from 10.0.5.3: icmp_req=2 ttl=64 time=21.2 ms
+64 bytes from 10.0.5.3: icmp_req=3 ttl=64 time=23.1 ms
+64 bytes from 10.0.5.3: icmp_req=4 ttl=64 time=13.3 ms
+64 bytes from 10.0.5.3: icmp_req=5 ttl=64 time=13.1 ms
+64 bytes from 10.0.5.3: icmp_req=6 ttl=64 time=11.6 ms
+64 bytes from 10.0.5.3: icmp_req=7 ttl=64 time=29.8 ms
+64 bytes from 10.0.5.3: icmp_req=8 ttl=64 time=10.9 ms
+64 bytes from 10.0.5.3: icmp_req=9 ttl=64 time=9.50 ms
+64 bytes from 10.0.5.3: icmp_req=10 ttl=64 time=16.5 ms
+64 bytes from 10.0.5.3: icmp_req=11 ttl=64 time=14.4 ms
+
