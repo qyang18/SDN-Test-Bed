@@ -1,0 +1,2 @@
+iperf3 -c $2 -p $3 -i 0.1 -t 50 > clientLog$1 
+#iperf3 -c $2 -i 0.1 -t 50 > clientLog$1

@@ -1,0 +1,1 @@
+iperf3 -c $2 -p $3 -i 1 -t 60 > clientLog$1

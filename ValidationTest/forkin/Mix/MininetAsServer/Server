@@ -1,0 +1,4 @@
+#iperf3 -s -i 0.1 -p $2 > serverLog$1&
+iperf3 -s -i 1 -p $2 >serverLog$1
+#sleep 120
+#killall -9 iperf3

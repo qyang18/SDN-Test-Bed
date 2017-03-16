@@ -1,3 +1,0 @@
-iperf -s -i 0.5 > serverLog$1&
-sleep 100
-killall -9 iperf
