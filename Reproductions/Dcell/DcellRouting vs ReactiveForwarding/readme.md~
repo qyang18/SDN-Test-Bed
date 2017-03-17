@@ -7,7 +7,7 @@ note that in reactive forwarding rule will not expire if we keep ping within def
 I have 5 sets of pings from different hosts.For each set that host ping another host we repeat it 10 times.
 1hop: h11 ping h21	s11,s21
 3hop: h12 ping h32	s12,s31,s32
-4hop: h13 ping h23 	s13,s41,s40,s42,s23
+4hop: h13 ping h23 	s13,s41,s42,s23
 5hop: h14 ping h22	
 5hop: h43 ping h53
 

@@ -9,6 +9,7 @@ from mininet.node import RemoteController, OVSSwitch
 from sys import argv
 import logging
 import os
+import random
 
 
 #logging.basicConfig(filename='./Dcell.log', level=logging.INFO)
@@ -31,34 +32,39 @@ class DcellTopo(Topo):
             for j in range(i, 5):   #[i; j] and [j+1; i] are connected
                 self.addLink('s'+str(i)+str(j), 's'+str(j+1)+str(i), bw=100)
 
-def perfTest(Topo,net):
-    print("start perf test")
-    #iperf h13  h23
-    h13, h23 = net.getNodeByName('h13','h23')
-    print("start serevr")
-    h23.cmd("./Server 13-23v2 &")
-    print("start client")
-    h13.cmd("./Client 13-23v2 10.0.2.3 &")
-    #wait till 30s let link s11 to s21 down
-    #sleep(30)
-    #print("30s passed")
-    #link s13 s41 down
+def randomPerfTest(net):
+    print("start random perf test")
+    #select 5 links of client-server pair and run iperf
 
-    #wait till 40s let switch s11 to s21 down
-    #sleep(10)
-    #print("10s passed")
-    #link s11 s21 down
-    #link s13 s41 down
-    #net.configLinkStatus('s13', 's41', "down")
-    #Topo.link_down('s13', 's41')
-    #ovs-vsctl del-br s21	
-    #switch s21 stop
-    
+    hostList=[]
+    for i in range(1,6):
+	clientID=str(random.randint(1,5))+str(random.randint(1,4))
+	while (clientID in hostList):
+		clientID=str(random.randint(1,5))+str(random.randint(1,4))
+	hostList.append(clientID)
+
+	serverID=str(random.randint(1,5))+str(random.randint(1,4))
+	while (serverID in hostList):
+		serverID=str(random.randint(1,5))+str(random.randint(1,4))
+	hostList.append(serverID)
+
+	print('generating iperf from h'+clientID+' to h'+serverID)
+	client=net.getNodeByName('h'+clientID);
+    	server=net.getNodeByName('h'+serverID);
+	
+	file_size=5000000
+	serverIperfArgs = 'iperf3 -c %s -n %d -i 0.5 > clientLog%sv%d &' % (str(server.IP()),file_size, clientID, 3)
+	clientIperfArgs = 'iperf3 -c %s -n %d -i 0.5 > clientLog%sv%d &' % (str(server.IP()),file_size, clientID, 3)
+
+	#print("./Server "+serverID+"v2 &")
+	#server.cmd("./Server "+serverID+"v2 &")
+	#print("./Client "+clientID+"v2 "+str(server.IP())+" &")
+	#client.cmd("./Client "+clientID+"v2 "+str(server.IP())+" &")
 
 def start(  ):
     "Create network and run simple performance test"
-    dcelltopo=DcellTopo()
-    net = Mininet( controller=None, topo=dcelltopo, link=TCLink, switch = OVSSwitch )
+    
+    net = Mininet( controller=None, topo=DcellTopo(), link=TCLink, switch = OVSSwitch )
     c3 = RemoteController('c3', ip='192.168.56.101', port=6633)
     net.addController(c3)
   
@@ -66,7 +72,7 @@ def start(  ):
     #h11, h21 = net.getNodeByName('h11','h21')
     #h21.cmd("./Server 11-21v1")
     #h11.cmd("./Client 11-21v5 10.0.2.1")
-    perfTest(dcelltopo,net)
+    randomPerfTest(net)
     CLI(net)
     net.stop()
 

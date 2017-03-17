@@ -9,6 +9,7 @@ from mininet.node import RemoteController, OVSSwitch
 from sys import argv
 import logging
 import os
+import random
 
 
 #logging.basicConfig(filename='./Dcell.log', level=logging.INFO)
@@ -31,25 +32,29 @@ class DcellTopo(Topo):
             for j in range(i, 5):   #[i; j] and [j+1; i] are connected
                 self.addLink('s'+str(i)+str(j), 's'+str(j+1)+str(i), bw=100)
 
-def perfTest(net):
-    print("start perf test")
+def randomPerfTest(net):
+    print("start random perf test")
     #select 5 links of client-server pair and run iperf
 
-    h11,h21,h12,h32,h13,h23,h14,h22,h43,h53 = net.getNodeByName('h11','h21','h12','h32','h13','h23','h14','h22','h43','h53' )
+    hostList=[]
+    for i in range(1,6):
+	clientID=str(random.randint(1,5))+str(random.randint(1,4))
+	while (clientID in hostList):
+		clientID=str(random.randint(1,5))+str(random.randint(1,4))
+	hostList.append(clientID)
 
-    print("start serevr")
-    h21.cmd("./Server 11-21v1 &")
-    h32.cmd("./Server 12-32v1 &")
-    h23.cmd("./Server 13-23v1 &")
-    h22.cmd("./Server 14-22v1 &")
-    h53.cmd("./Server 43-53v1 &")
-    print("start client")
-    h11.cmd("./Client 11-21v1 10.0.2.1 &")
-    h12.cmd("./Client 12-32v1 10.0.3.2 &")
-    h13.cmd("./Client 13-23v1 10.0.2.3 &")
-    h14.cmd("./Client 14-22v1 10.0.2.2 &")
-    h43.cmd("./Client 43-53v1 10.0.5.3 &")
-    	
+	serverID=str(random.randint(1,5))+str(random.randint(1,4))
+	while (serverID in hostList):
+		serverID=str(random.randint(1,5))+str(random.randint(1,4))
+	hostList.append(serverID)
+
+	print('generating iperf from h'+clientID+' to h'+serverID)
+	client=net.getNodeByName('h'+clientID);
+    	server=net.getNodeByName('h'+serverID);
+	#print("./Server "+serverID+"v2 &")
+	server.cmd("./Server "+serverID+"v2 &")
+	#print("./Client "+clientID+"v2 "+str(server.IP())+" &")
+	client.cmd("./Client "+clientID+"v2 "+str(server.IP())+" &")
 
 def start(  ):
     "Create network and run simple performance test"
@@ -62,7 +67,7 @@ def start(  ):
     #h11, h21 = net.getNodeByName('h11','h21')
     #h21.cmd("./Server 11-21v1")
     #h11.cmd("./Client 11-21v5 10.0.2.1")
-    perfTest(net)
+    randomPerfTest(net)
     CLI(net)
     net.stop()
 
