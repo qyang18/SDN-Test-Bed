@@ -1,6 +1,7 @@
 #read all log files as file1,file2,....,filen
 #for each file get the column at given time
 #plot a CDF diagram with total data and time
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -61,15 +62,18 @@ if __name__ == "__main__":
     # print(file)
     file=[]
     data=[]
-    time=np.linspace(0,10,50)
+    time=np.linspace(0,50.8,254)
     file.append(getLogFileInCDF('log1'))
     file.append(getLogFileInCDF('log2'))
 
-    for i in range(0,50):
+    for i in range(0,254):
         tempData=0
         for eachfile in file:
             #get line i and add up together
-            tempData+=eachfile[i][1]
+            try:
+                tempData+=eachfile[i][1]
+            except:
+                tempData+=eachfile[len(eachfile)-1][1]
         data.append(tempData)
 
     plt.title('CDF Plot of data transmitted and time')
