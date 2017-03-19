@@ -33,62 +33,30 @@ class DcellTopo(Topo):
             for j in range(i, 5):   #[i; j] and [j+1; i] are connected
                 self.addLink('s'+str(i)+str(j), 's'+str(j+1)+str(i), bw=100)
 
-def randomPerfTest(net):
+def PerfTest(net):
     #net.pingAll()
     print("start random perf test")
     #select 5 links of client-server pair and run iperf
     #50G
     totalFileSize=50000000000
-    hostList=[]
-    serverlist=[]
-    clientlist=[]
-    filesizelist=[]
 
-    for i in range(1,11):
-	clientID=str(random.randint(1,5))+str(random.randint(1,4))
-	while (clientID in hostList):
-		clientID=str(random.randint(1,5))+str(random.randint(1,4))
-	hostList.append(clientID)
-	clientlist.append(clientID)
-
-	serverID=str(random.randint(1,5))+str(random.randint(1,4))
-	while (serverID in hostList):
-		serverID=str(random.randint(1,5))+str(random.randint(1,4))
-	hostList.append(serverID)
-	serverlist.append(serverID)
-
-	
-	#client=net.getNodeByName('h'+clientID);
-    	server=net.getNodeByName('h'+serverID);
-	
-	if not i==10:
-       		#file_size=10000000 around 9.2M finished in 0.1s
-		file_size=random.randint(10000000,6000000000)
-		totalFileSize-=file_size
-	else:
-		file_size=totalFileSize
-
-	filesizelist.append(file_size)
-	print('generating iperf transmitting '+str(file_size)+' from h'+clientID+' to h'+serverID)
-	#serverIperfArgs = 'iperf -s > serverLog%sv%d &' % (serverID, 4)
-	serverIperfArgs = 'iperf -s -i 1 > log%sv%d &' % (i, 5)
+    for i in range(0,20):
+	#start 20 server
+	print('generating server:h'+str(1+i/4)+str(1+i%4))
+	server=net.getNodeByName('h'+str(1+i/4)+str(1+i%4))
+	serverIperfArgs = 'iperf -s -i 1 > log%sv%d &' % (i, 6)
 	server.cmd(serverIperfArgs)
-    #sleep(10)
 
-    for i in range(0,10):
-	print('generating iperf client from h'+clientlist[i]+' to h'+serverlist[i])
-	tempclient=net.getNodeByName('h'+clientlist[i]);
-	tempserver=net.getNodeByName('h'+serverlist[i]);
-	#clientIperfArgs = 'iperf -c %s -n %d -i 1 > clientLog%sv%d &' % (str(tempserver.IP()),file_size, clientlist[i], 5)
-	clientIperfArgs = 'iperf -c %s -n %d -i 1 &' % (str(tempserver.IP()),filesizelist[i])
-	#print(serverIperfArgs)
-	#print(clientIperfArgs)
-	
-	tempclient.cmd(clientIperfArgs)
-	#print("./Server "+serverID+"v2 &")
-	#server.cmd("./Server "+serverID+"v2 &")
-	#print("./Client "+clientID+"v2 "+str(server.IP())+" &")
-	#client.cmd("./Client "+clientID+"v2 "+str(server.IP())+" &")
+    for i in range(0,20):
+	client=net.getNodeByName('h'+str(1+i/4)+str(1+i%4))
+	for j in range(0,20):
+		if i==j :
+			continue
+		#start 20 client sending data to all the rest 19 servers
+		server=net.getNodeByName('h'+str(1+j/5)+str(j%5));
+		clientIperfArgs = 'iperf -c %s -n %d -i 1 &' % (str(server.IP()),500000000)
+		print('generating iperf client from'+str(client.IP())+' to '+str(server.IP()))
+		client.cmd(clientIperfArgs)
 
 def start(  ):
     "Create network and run simple performance test"
@@ -101,11 +69,9 @@ def start(  ):
     #h11, h21 = net.getNodeByName('h11','h21')
     #h21.cmd("./Server 11-21v1")
     #h11.cmd("./Client 11-21v5 10.0.2.1")
-    randomPerfTest(net)
+    PerfTest(net)
     CLI(net)
     net.stop()
 
 setLogLevel( 'info' )
 start( )
-
-

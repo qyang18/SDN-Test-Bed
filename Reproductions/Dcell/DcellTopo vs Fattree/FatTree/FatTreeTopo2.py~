@@ -35,17 +35,17 @@ def PerfTest(net):
     #50G
     FileSize=50000000
 
-    for i in range(0,20):
+    for i in range(0,4):
 	#start 20 server, for each server we create 19 files to store logs of 19 connections with 19 other nodes. 
 	print('generating server:h'+str(1+i/4)+str(1+i%4))
 	server=net.getNodeByName('h'+str(1+i/4)+str(1+i%4))
-	for j in range(1,21):
+	for j in range(1,5):
 		serverIperfArgs = 'iperf -s -i 1 -p %d > log%sp%sv%d &' % (10000+j,i+1,j, 6)
 		server.cmd(serverIperfArgs)
 
-    for i in range(0,20):
+    for i in range(0,4):
 	server=net.getNodeByName('h'+str(1+i/4)+str(1+i%4))
-	for j in range(0,20):
+	for j in range(0,4):
 		if i==j :
 			continue
 		#start 20 client sending data to all the rest 19 servers
