@@ -33,7 +33,7 @@ class DcellTopo(Topo):
                 self.addLink('s'+str(i)+str(j), 's'+str(j+1)+str(i), bw=100)
 
 def randomPerfTest(net):
-    net.pingAll()
+    #net.pingAll()
     print("start random perf test")
     #select 5 links of client-server pair and run iperf
     #50G
@@ -54,11 +54,12 @@ def randomPerfTest(net):
 	client=net.getNodeByName('h'+clientID);
     	server=net.getNodeByName('h'+serverID);
 	
-	file_size=5000000000
-	serverIperfArgs = 'iperf3 -s > serverLog%sv%d &' % (serverID, 3)
-	clientIperfArgs = 'iperf3 -c %s -n %d -i 0.5 > clientLog%sv%d &' % (str(server.IP()),file_size, clientID, 3)
-	print(serverIperfArgs)
-	print(clientIperfArgs)
+       #file_size=10000000 around 9.2M finished in 0.1s
+	file_size=500000000
+	serverIperfArgs = 'iperf3 -s > serverLog%sv%d &' % (serverID, 4)
+	clientIperfArgs = 'iperf3 -c %s -n %d -i 0.5 > clientLog%sv%d &' % (str(server.IP()),file_size, clientID, 4)
+	#print(serverIperfArgs)
+	#print(clientIperfArgs)
 	server.cmd(serverIperfArgs)
 	client.cmd(clientIperfArgs)
 	#print("./Server "+serverID+"v2 &")

@@ -1,0 +1,33 @@
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 10.0.5.4, port 49904
+[  5] local 10.0.4.3 port 5201 connected to 10.0.5.4 port 49917
+[ ID] Interval           Transfer     Bandwidth
+[  5]   0.00-1.00   sec  4.77 MBytes  40.0 Mbits/sec                  
+[  5]   1.00-2.00   sec  4.98 MBytes  41.8 Mbits/sec                  
+[  5]   2.00-3.00   sec  5.53 MBytes  46.4 Mbits/sec                  
+[  5]   3.00-4.00   sec  5.16 MBytes  43.3 Mbits/sec                  
+[  5]   4.00-5.00   sec  4.97 MBytes  41.7 Mbits/sec                  
+[  5]   5.00-6.00   sec  4.66 MBytes  39.0 Mbits/sec                  
+[  5]   6.00-7.00   sec  4.85 MBytes  40.7 Mbits/sec                  
+[  5]   7.00-8.02   sec  5.22 MBytes  42.9 Mbits/sec                  
+[  5]   8.02-9.00   sec  5.10 MBytes  43.6 Mbits/sec                  
+[  5]   9.00-10.00  sec  5.28 MBytes  44.3 Mbits/sec                  
+[  5]  10.00-11.00  sec  5.28 MBytes  44.3 Mbits/sec                  
+[  5]  11.00-12.01  sec  5.22 MBytes  43.6 Mbits/sec                  
+[  5]  12.01-13.00  sec  5.16 MBytes  43.4 Mbits/sec                  
+[  5]  13.00-14.00  sec  5.41 MBytes  45.3 Mbits/sec                  
+[  5]  14.00-15.00  sec  4.78 MBytes  40.2 Mbits/sec                  
+[  5]  15.00-16.00  sec  5.28 MBytes  44.3 Mbits/sec                  
+[  5]  16.00-17.01  sec  4.91 MBytes  40.9 Mbits/sec                  
+[  5]  17.01-18.00  sec  5.41 MBytes  45.6 Mbits/sec                  
+[  5]  18.00-18.22  sec  1.06 MBytes  40.7 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bandwidth
+[  5]   0.00-18.22  sec  0.00 Bytes  0.00 bits/sec                  sender
+[  5]   0.00-18.22  sec  93.0 MBytes  42.8 Mbits/sec                  receiver
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+iperf3: interrupt - the server has terminated

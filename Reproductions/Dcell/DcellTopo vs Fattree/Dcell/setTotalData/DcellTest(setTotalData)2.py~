@@ -10,6 +10,7 @@ from sys import argv
 import logging
 import os
 import random
+from time import sleep
 
 
 #logging.basicConfig(filename='./Dcell.log', level=logging.INFO)
@@ -39,29 +40,51 @@ def randomPerfTest(net):
     #50G
     totalFileSize=50000000000
     hostList=[]
-    for i in range(1,6):
+    serverlist=[]
+    clientlist=[]
+    filesizelist=[]
+
+    for i in range(1,11):
 	clientID=str(random.randint(1,5))+str(random.randint(1,4))
 	while (clientID in hostList):
 		clientID=str(random.randint(1,5))+str(random.randint(1,4))
 	hostList.append(clientID)
+	clientlist.append(clientID)
 
 	serverID=str(random.randint(1,5))+str(random.randint(1,4))
 	while (serverID in hostList):
 		serverID=str(random.randint(1,5))+str(random.randint(1,4))
 	hostList.append(serverID)
+	serverlist.append(serverID)
 
-	print('generating iperf from h'+clientID+' to h'+serverID)
-	client=net.getNodeByName('h'+clientID);
+	
+	#client=net.getNodeByName('h'+clientID);
     	server=net.getNodeByName('h'+serverID);
 	
-       #file_size=10000000 around 9.2M finished in 0.1s
-	file_size=500000000
-	serverIperfArgs = 'iperf -s > serverLog%sv%d &' % (serverID, 4)
-	clientIperfArgs = 'iperf -c %s -n %d -i 0.5 > clientLog%sv%d &' % (str(server.IP()),file_size, clientID, 4)
+	if not i==10:
+       		#file_size=10000000 around 9.2M finished in 0.1s
+		file_size=random.randint(10000000,6000000000)
+		totalFileSize-=file_size
+	else:
+		file_size=totalFileSize
+
+	filesizelist.append(file_size)
+	print('generating iperf transmitting '+str(file_size)+' from h'+clientID+' to h'+serverID)
+	#serverIperfArgs = 'iperf -s > serverLog%sv%d &' % (serverID, 4)
+	serverIperfArgs = 'iperf -s -i 1 > log%sv%d &' % (i, 5)
+	server.cmd(serverIperfArgs)
+    #sleep(10)
+
+    for i in range(0,10):
+	print('generating iperf client from h'+clientlist[i]+' to h'+serverlist[i])
+	tempclient=net.getNodeByName('h'+clientlist[i]);
+	tempserver=net.getNodeByName('h'+serverlist[i]);
+	#clientIperfArgs = 'iperf -c %s -n %d -i 1 > clientLog%sv%d &' % (str(tempserver.IP()),file_size, clientlist[i], 5)
+	clientIperfArgs = 'iperf -c %s -n %d -i 1 &' % (str(tempserver.IP()),filesizelist[i])
 	#print(serverIperfArgs)
 	#print(clientIperfArgs)
-	server.cmd(serverIperfArgs)
-	client.cmd(clientIperfArgs)
+	
+	tempclient.cmd(clientIperfArgs)
 	#print("./Server "+serverID+"v2 &")
 	#server.cmd("./Server "+serverID+"v2 &")
 	#print("./Client "+clientID+"v2 "+str(server.IP())+" &")
