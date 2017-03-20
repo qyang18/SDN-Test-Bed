@@ -32,7 +32,7 @@ def PerfTest(net):
     #net.pingAll()
     print("start random perf test")
     #select 5 links of client-server pair and run iperf
-    #50G
+    #50M
     FileSize=50000000
 
     for i in range(0,20):
@@ -40,7 +40,7 @@ def PerfTest(net):
 	print('generating server:h'+str(1+i/4)+str(1+i%4))
 	server=net.getNodeByName('h'+str(1+i/4)+str(1+i%4))
 	for j in range(1,21):
-		serverIperfArgs = 'iperf -s -i 1 -p %d > log%sp%sv%d &' % (10000+j,i+1,j, 6)
+		serverIperfArgs = 'iperf -s -i 1 -p %d > ./FatTreeFullLog/FatTreeFullLog%sp%sv%d &' % (10000+j,i+1,j, 6)
 		server.cmd(serverIperfArgs)
 
     for i in range(0,20):
