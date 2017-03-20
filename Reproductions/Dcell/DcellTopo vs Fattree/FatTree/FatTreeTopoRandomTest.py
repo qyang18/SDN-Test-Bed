@@ -68,10 +68,10 @@ def randomPerfTest(net):
     #sleep(10)
 
     for i in range(0,10):
-	print('generating iperf client from h'+clientlist[i]+' to h'+serverlist[i])
+	print('generating iperf client from h'+clientlist[i]+' to h'+serverlist[i]+' filesize='+str(filesizelist[i]))
 	tempclient=net.getNodeByName('h'+clientlist[i]);
 	tempserver=net.getNodeByName('h'+serverlist[i]);
-	clientIperfArgs = 'iperf -c %s -n %d -i 1 &' % (str(tempserver.IP()),filesizelist[i])
+	clientIperfArgs = 'iperf -c %s -n %d -i 1 > ./FatTreeRandomLog/clientLog%d &' % (str(tempserver.IP()),filesizelist[i],i)
 
 	
 	tempclient.cmd(clientIperfArgs)
@@ -80,7 +80,7 @@ def start(  ):
     "Create network and run simple performance test"
     
     net = Mininet( controller=None, topo=TreeTopo(), link=TCLink, switch = OVSSwitch )
-    c3 = RemoteController('c3', ip='192.168.56.101', port=6633)
+    c3 = RemoteController('c3', ip='192.168.33.101', port=6833)
     net.addController(c3)
     
     net.start()
